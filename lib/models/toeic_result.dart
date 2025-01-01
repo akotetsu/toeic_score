@@ -14,9 +14,9 @@ class ToeicResult {
   }) : id = uuid.v4();
 
   final String id;
-  final String total;
-  final String reading;
-  final String listening;
+  final int total;
+  final int reading;
+  final int listening;
   final DateTime date;
   //後にスコアの取り扱いで型が原因で地獄みるかも
 

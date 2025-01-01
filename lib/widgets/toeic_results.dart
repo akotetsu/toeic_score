@@ -16,10 +16,17 @@ class _ToeicResultsState extends State<ToeicResults> {
 
   void _openAddToeicResultOverlay() {
     showModalBottomSheet(
-      isScrollControlled: true,
+      isScrollControlled: true, // モーダルを画面全体で表示可能に
       context: context,
-      builder: (ctx) => NewToeicResult(
-        onAddToeicResult: _addToeicResult,
+      builder: (ctx) => SafeArea(
+        child: Padding(
+          padding: EdgeInsets.only(
+            bottom: MediaQuery.of(context).viewInsets.bottom, // キーボードの高さを考慮
+          ),
+          child: NewToeicResult(
+            onAddToeicResult: _addToeicResult,
+          ),
+        ),
       ),
     );
   }
@@ -66,16 +73,11 @@ class _ToeicResultsState extends State<ToeicResults> {
         onRemoveToeicResult: _removeToeicResult,
       );
     }
-
+    //記録追加をAppBarのアイコンからfloatingactionbuttonに変更
     return Scaffold(
       appBar: AppBar(
         title: const Text('TOEIC 受験記録'),
-        actions: [
-          IconButton(
-            onPressed: _openAddToeicResultOverlay,
-            icon: const Icon(Icons.add),
-          ),
-        ],
+          centerTitle: true //追加
       ),
       body: Column(
         children: [
@@ -84,6 +86,11 @@ class _ToeicResultsState extends State<ToeicResults> {
             child: mainContent,
           ),
         ],
+      ),
+      floatingActionButton: FloatingActionButton.extended(
+          onPressed: _openAddToeicResultOverlay,
+          icon: const Icon(Icons.add),
+          label: const Text("追加する"),
       ),
     );
   }

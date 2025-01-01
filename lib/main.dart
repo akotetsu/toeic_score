@@ -11,49 +11,60 @@ var kDarkColorScheme = ColorScheme.fromSeed(
 );
 
 void main() => runApp(
-    MaterialApp(
-      darkTheme: ThemeData.dark().copyWith(
-        colorScheme: kDarkColorScheme,
-        cardTheme: const CardTheme().copyWith(
-          color: kDarkColorScheme.secondaryContainer,
-          margin: const EdgeInsets.symmetric(
-            horizontal: 16,
-            vertical: 8,
-          ),
+  MaterialApp(
+    debugShowCheckedModeBanner: false,
+    darkTheme: ThemeData.dark().copyWith(
+      colorScheme: kDarkColorScheme,
+      cardTheme: CardTheme(
+        color: kDarkColorScheme.secondaryContainer,
+        margin: const EdgeInsets.symmetric(
+          horizontal: 16,
+          vertical: 8,
         ),
-        elevatedButtonTheme: ElevatedButtonThemeData(
-          style: ElevatedButton.styleFrom(
-            backgroundColor: kDarkColorScheme.primaryContainer,
-            foregroundColor: kDarkColorScheme.onPrimaryContainer,
-          ),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12),
         ),
       ),
-      theme: ThemeData().copyWith(
-        colorScheme: kColorScheme,
-        appBarTheme: const AppBarTheme().copyWith(
-          backgroundColor: kColorScheme.onPrimaryContainer,
-          foregroundColor: kColorScheme.primaryContainer,
-        ),
-        cardTheme: const CardTheme().copyWith(
-          color: kColorScheme.secondaryContainer,
-          margin: const EdgeInsets.symmetric(
-            horizontal: 16,
-            vertical: 8,
-          ),
-        ),
-        elevatedButtonTheme: ElevatedButtonThemeData(
-          style: ElevatedButton.styleFrom(
-            backgroundColor: kColorScheme.primaryContainer,
-          ),
-        ),
-        textTheme: ThemeData().textTheme.copyWith(
-          titleLarge: TextStyle(
-            fontWeight: FontWeight.bold,
-            color: kColorScheme.onSecondaryContainer,
-            fontSize: 12,
-          ),
+      elevatedButtonTheme: ElevatedButtonThemeData(
+        style: ElevatedButton.styleFrom(
+          backgroundColor: kDarkColorScheme.primaryContainer,
+          foregroundColor: kDarkColorScheme.onPrimaryContainer,
         ),
       ),
-      home: const ToeicResults(),
-    ));
-
+    ),
+    theme: ThemeData().copyWith(
+      colorScheme: kColorScheme,
+      appBarTheme: AppBarTheme(
+        backgroundColor: kColorScheme.primary,
+        foregroundColor: kColorScheme.onPrimary,
+        centerTitle: true,
+      ),
+      cardTheme: CardTheme(
+        color: kColorScheme.secondaryContainer,
+        margin: const EdgeInsets.symmetric(
+          horizontal: 16,
+          vertical: 8,
+        ),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12),
+        ),
+      ),
+      elevatedButtonTheme: ElevatedButtonThemeData(
+        style: ElevatedButton.styleFrom(
+          backgroundColor: kColorScheme.primary,
+          foregroundColor: kColorScheme.onPrimary,
+        ),
+      ),
+      textTheme: TextTheme(
+        headlineSmall: TextStyle(
+          fontWeight: FontWeight.bold,
+          color: kColorScheme.onSecondaryContainer,
+        ),
+        bodyMedium: TextStyle(
+          color: kColorScheme.onBackground,
+        ),
+      ),
+    ),
+    home: const ToeicResults(),
+  ),
+);
